@@ -1,7 +1,7 @@
 import cors from "cors"
 import express from "express"
 import mascotaRouter from "./routes/mascotaRoutes.js"
-// import connectDB (for Mongo)
+import connectDB from "./config/db.js"
 
 const app = express()
 
@@ -20,8 +20,8 @@ app.get("/api", (req, res) => {
 
 const PORT = process.env.PORT || 4000
 
-// connectDB().then(() => ) {
+connectDB().then(() => {
     app.listen(PORT, () => {
         console.log("LEVANTAO: Listening the port", PORT)
     })
-//})
+})
