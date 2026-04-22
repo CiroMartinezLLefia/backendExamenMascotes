@@ -64,6 +64,49 @@ const createMascota = async (req, res) => {
     }
 }
 
+/*function createMascota (req, res) {
+    const { nombre, tipo, raza, foto } = req.body
+    const id = String(mascotes.length + 1)
+    const nova = { id, nombre, tipo, raza, foto }
+    mascotes.push(nova)
+    res.status(201).json(nova)
+}*/
+
+const editMascota = async (req, res) => {
+    try {
+        const mascota = req.mascota
+        const nombre = readNombre(req.body)
+        const tipo = readTipo(req.body)
+        const raza = readRaza(req.body)
+        const foto = readFoto(req.body)
+        const idToFind = req.params.id
+        await mascota.save()
+        const data = await Mascota.findById(idToFind)
+        res.json(data)
+    } catch (err) {
+        res.status(404).json({error: err.message})
+    }
+}
+/*function editMascota (req, res) {
+    const { id } = req.params
+    const index = mascotes.findIndex((c) => c.id === id)
+    if (index === -1){
+        return res.status(404).json({error: "Mascota not found", index})
+    }
+    mascotes[index] = {...mascotes[index], ...req.body, id}
+    res.json (mascotes[index])
+}*/
+
+function deleteMascota (req, res) {
+    const { id } = req.params
+    const index = mascotes.findIndex((c) => c.id === id)
+    if (index === -1){
+        return res.status(404).json({error: "Mascota not found", id})
+    }
+    mascotes.splice(index, 1)
+    res.status(204).send()
+}
+
 const mascotes = [
     {
         id: "1",
@@ -80,34 +123,6 @@ const mascotes = [
         foto: "url//url2",
     },
 ]
-
-/*function createMascota (req, res) {
-    const { nombre, tipo, raza, foto } = req.body
-    const id = String(mascotes.length + 1)
-    const nova = { id, nombre, tipo, raza, foto }
-    mascotes.push(nova)
-    res.status(201).json(nova)
-}*/
-
-function editMascota (req, res) {
-    const { id } = req.params
-    const index = mascotes.findIndex((c) => c.id === id)
-    if (index === -1){
-        return res.status(404).json({error: "Mascota not found", index})
-    }
-    mascotes[index] = {...mascotes[index], ...req.body, id}
-    res.json (mascotes[index])
-}
-
-function deleteMascota (req, res) {
-    const { id } = req.params
-    const index = mascotes.findIndex((c) => c.id === id)
-    if (index === -1){
-        return res.status(404).json({error: "Mascota not found", id})
-    }
-    mascotes.splice(index, 1)
-    res.status(204).send()
-}
 
 export {
     getAllMascotes,
