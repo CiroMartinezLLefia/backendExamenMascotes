@@ -73,8 +73,10 @@ const createMascota = async (req, res) => {
 }*/
 
 const editMascota = async (req, res) => {
+    const {id} = req.params
+
     try {
-        const mascota = req.Mascota
+        const mascota = await Mascota.findById(id)
         const nombre = readNombre(req.body)
         const tipo = readTipo(req.body)
         const raza = readRaza(req.body)
