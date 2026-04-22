@@ -26,6 +26,31 @@ const getAllMascotes = async (req, res) => {
     }
 }
 
+/*function getAllMascotes (req, res) {
+    res.json ({
+        dades: mascotes,
+        total: mascotes.length
+    })
+}*/
+
+const getMascotaById = async (req, res) => {
+    try {
+        const idToFind = req.params.id
+        const data = await Mascota.findById(idToFind)
+        res.json(data)
+    } catch (err) {
+        res.status(404).json({error: err.message})
+    }
+}
+/*function getMascotaById (req, res) {
+    const { id } = req.params
+    const mascota = mascotes.findIndex((c) => c.id === id)
+    if (mascota === -1){
+        return res.status(404).json({error: "Mascota not found", id})
+    }
+    res.json(mascotes[mascota])
+}*/
+
 const createMascota = async (req, res) => {
     const nombre = readNombre(req.body)
     const tipo = readTipo(req.body)
@@ -55,22 +80,6 @@ const mascotes = [
         foto: "url//url2",
     },
 ]
-
-/*function getAllMascotes (req, res) {
-    res.json ({
-        dades: mascotes,
-        total: mascotes.length
-    })
-}*/
-
-function getMascotaById (req, res) {
-    const { id } = req.params
-    const mascota = mascotes.findIndex((c) => c.id === id)
-    if (mascota === -1){
-        return res.status(404).json({error: "Mascota not found", id})
-    }
-    res.json(mascotes[mascota])
-}
 
 /*function createMascota (req, res) {
     const { nombre, tipo, raza, foto } = req.body
