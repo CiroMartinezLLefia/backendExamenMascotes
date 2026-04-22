@@ -63,7 +63,6 @@ const createMascota = async (req, res) => {
         return res.status(400).json({error: err.message})
     }
 }
-
 /*function createMascota (req, res) {
     const { nombre, tipo, raza, foto } = req.body
     const id = String(mascotes.length + 1)
@@ -115,7 +114,17 @@ const editMascota = async (req, res) => {
     res.json (mascotes[index])
 }*/
 
-function deleteMascota (req, res) {
+const deleteMascota = async (req, res) => {
+    try {
+        const idToFind = req.params.id
+        await Mascota.findByIdAndDelete(idToFind)
+        return res.status(204).send()
+    } catch (err) {
+        res.status(404).json({error: err.message})
+    }
+}
+
+/*function deleteMascota (req, res) {
     const { id } = req.params
     const index = mascotes.findIndex((c) => c.id === id)
     if (index === -1){
@@ -123,7 +132,7 @@ function deleteMascota (req, res) {
     }
     mascotes.splice(index, 1)
     res.status(204).send()
-}
+}*/
 
 const mascotes = [
     {
