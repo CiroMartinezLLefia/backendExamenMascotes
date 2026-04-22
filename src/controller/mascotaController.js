@@ -74,10 +74,31 @@ const createMascota = async (req, res) => {
 
 const editMascota = async (req, res) => {
     try {
-        const mascota = req.mascota
+        const mascota = req.Mascota
+        const nombre = readNombre(req.body)
+        const tipo = readTipo(req.body)
+        const raza = readRaza(req.body)
+        const foto = readFoto(req.body)
+
+        if (nombre) {
+            mascota.nombre = nombre
+        }
+
+        if (tipo) {
+            mascota.tipo = tipo
+        }
+
+        if (raza) {
+            mascota.raza = raza
+        }
+
+        if (foto) {
+            mascota.foto = foto
+        }
         const idToFind = req.params.id
+        await mascota.save()
         const data = await Mascota.findById(idToFind)
-        res.json({mascota: mapMascota(mascota)})
+        res.json(data)
     } catch (err) {
         res.status(404).json({error: err.message})
     }
