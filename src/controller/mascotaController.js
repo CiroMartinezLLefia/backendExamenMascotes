@@ -26,7 +26,7 @@ function getMascotaById (req, res) {
     const { id } = req.params
     const mascota = mascotes.findIndex((c) => c.id === id)
     if (mascota === -1){
-        res.status(404).json({error: "Mascota not found", id})
+        return res.status(404).json({error: "Mascota not found", id})
     }
     res.json(mascotes[mascota])
 }
@@ -43,7 +43,7 @@ function editMascota (req, res) {
     const { id } = req.params
     const index = mascotes.findIndex((c) => c.id === id)
     if (index === -1){
-        res.status(404).json({error: "Mascota not found", index})
+        return res.status(404).json({error: "Mascota not found", index})
     }
     mascotes[index] = {...mascotes[index], ...req.body, id}
     res.json (mascotes[index])
@@ -53,7 +53,7 @@ function deleteMascota (req, res) {
     const { id } = req.params
     const index = mascotes.findIndex((c) => c.id === id)
     if (index === -1){
-        res.status(404).json({error: "Mascota not found", id})
+        return res.status(404).json({error: "Mascota not found", id})
     }
     mascotes.splice(index, 1)
     res.status(204).send()

@@ -1,9 +1,37 @@
-GET http://localhost:4000/api/mascotes
+GET https://backendexamenmascotes.onrender.com/api/mascotes
 
 ###
 
-GET http://localhost:4000/api/mascotes/1
+GET https://backendexamenmascotes.onrender.com/api/mascotes/1
 
 ###
 
-GET http://localhost:4000/api/mascotes/ThisIsNotAnID
+GET https://backendexamenmascotes.onrender.com/api/mascotes/ThisIsNotAnID
+
+###
+
+POST https://backendexamenmascotes.onrender.com/api/mascotes
+Content-Type: application/json
+
+{
+  "nombre": "Perro Creado",
+  "tipo": "POST",
+  "raza": "Post Terrier",
+  "foto": "url//urlPost"
+}
+
+###
+
+PUT https://backendexamenmascotes.onrender.com/api/mascotes/2
+Content-Type: application/json
+
+{
+  "nombre": "Perro Editado",
+  "tipo": "PUT",
+  "raza": "Put Terrier",
+  "foto": "url//urlPut"
+}
+
+###
+
+DELETE  https://backendexamenmascotes.onrender.com/api/mascotes/2
