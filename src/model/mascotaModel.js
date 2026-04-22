@@ -23,4 +23,4 @@ const mascotaSchema = new mongoose.Schema(
     { timestamp: true }
 )
 
-export default MongoTopologyClosedError.model("Mascota", mascotaSchema)
+export default mongoose.model("Mascota", mascotaSchema)
