@@ -52,12 +52,12 @@ const mascotes = [
     },
 ]
 
-function getAllMascotes (req, res) {
+/*function getAllMascotes (req, res) {
     res.json ({
         dades: mascotes,
         total: mascotes.length
     })
-}
+}*/
 
 function getMascotaById (req, res) {
     const { id } = req.params
