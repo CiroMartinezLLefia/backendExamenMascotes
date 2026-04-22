@@ -27,6 +27,10 @@ const getAllMascotes = async (req, res) => {
 }
 
 const createMascota = async (req, res) => {
+    const nombre = readNombre(req.body)
+    const tipo = readTipo(req.body)
+    const raza = readRaza(req.body)
+    const foto = readFoto(req.body)
     try {
         const mascota = await Mascota.create({nombre, tipo, raza, foto})
         return res.status(201).json({mascota: mapMascota(mascota)})
