@@ -4,7 +4,7 @@ import {
     getMascotaById,
     createMascota,
     editMascota,
-    deleteMascota
+    deleteMascota,
 } from "../controller/mascotaController.js"
 
 const mascotaRouter = express.Router()

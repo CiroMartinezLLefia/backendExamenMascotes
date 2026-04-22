@@ -46,7 +46,7 @@ function editMascota (req, res) {
         return res.status(404).json({error: "Mascota not found", index})
     }
     mascotes[index] = {...mascotes[index], ...req.body, id}
-    res.json.(mascotes[index])
+    res.json (mascotes[index])
 }
 
 function deleteMascota (req, res) {
@@ -64,5 +64,5 @@ export {
     getMascotaById,
     createMascota,
     editMascota,
-    deleteMascota
+    deleteMascota,
 }
